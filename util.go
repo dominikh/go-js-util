@@ -25,6 +25,15 @@ func IntSlice(o js.Object) []int {
 	return ret
 }
 
+func StringSlice(o js.Object) []string {
+	d := o.Interface().([]interface{})
+	ret := make([]string, len(d))
+	for i, e := range d {
+		ret[i] = e.(string)
+	}
+	return ret
+}
+
 func Time(o js.Object) time.Time {
 	ms := int64(o.Call("getTime").Float())
 	s := ms / 1000
