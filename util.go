@@ -40,3 +40,20 @@ func Time(o js.Object) time.Time {
 	ns := (ms % 1000 * 1e6)
 	return time.Unix(int64(s), int64(ns))
 }
+
+type Err struct {
+	js.Object
+	Message string `js:"message"`
+	Name    string `js:"name"`
+	File    string `js:"fileName"`   // Mozilla extension
+	Line    int    `js:"lineNumber"` // Mozilla extension
+	Stack   string `js:"stack"`      // Chrome/Microsoft extension
+}
+
+func (err Err) Error() string {
+	return err.Message
+}
+
+func Error(o js.Object) error {
+	return Err{Object: o}
+}
