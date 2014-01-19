@@ -55,5 +55,8 @@ func (err Err) Error() string {
 }
 
 func Error(o js.Object) error {
+	if o.IsNull() {
+		return nil
+	}
 	return Err{Object: o}
 }
