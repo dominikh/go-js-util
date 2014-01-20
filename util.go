@@ -1,11 +1,7 @@
 // Package util provides some helpers for working with GopherJS.
 package util
 
-import (
-	"time"
-
-	"github.com/neelance/gopherjs/js"
-)
+import "github.com/neelance/gopherjs/js"
 
 func Float64Slice(o js.Object) []float64 {
 	d := o.Interface().([]interface{})
@@ -32,13 +28,6 @@ func StringSlice(o js.Object) []string {
 		ret[i] = e.(string)
 	}
 	return ret
-}
-
-func Time(o js.Object) time.Time {
-	ms := int64(o.Call("getTime").Float())
-	s := ms / 1000
-	ns := (ms % 1000 * 1e6)
-	return time.Unix(int64(s), int64(ns))
 }
 
 type Err struct {
