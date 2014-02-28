@@ -1,7 +1,7 @@
 // Package util provides some helpers for working with GopherJS.
 package util
 
-import "github.com/neelance/gopherjs/js"
+import "github.com/gopherjs/gopherjs/js"
 
 func Float64Slice(o js.Object) []float64 {
 	d := o.Interface().([]interface{})
