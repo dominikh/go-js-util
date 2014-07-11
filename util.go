@@ -49,3 +49,15 @@ func Error(o js.Object) error {
 	}
 	return Err{Object: o}
 }
+
+type EventTarget struct {
+	js.Object
+}
+
+func (t EventTarget) AddEventListener(typ string, useCapture bool, listener func(js.Object)) {
+	t.Call("addEventListener", typ, listener, useCapture)
+}
+
+func (t EventTarget) RemoveEventListener(typ string, useCapture bool, listener func(js.Object)) {
+	t.Call("removeEventListener", typ, listener, useCapture)
+}
