@@ -4,6 +4,9 @@ package util
 import "github.com/gopherjs/gopherjs/js"
 
 func Float64Slice(o js.Object) []float64 {
+	if o.IsNull() {
+		return nil
+	}
 	d := o.Interface().([]interface{})
 	ret := make([]float64, len(d))
 	for i, e := range d {
@@ -13,6 +16,9 @@ func Float64Slice(o js.Object) []float64 {
 }
 
 func IntSlice(o js.Object) []int {
+	if o.IsNull() {
+		return nil
+	}
 	d := o.Interface().([]interface{})
 	ret := make([]int, len(d))
 	for i, e := range d {
@@ -22,6 +28,9 @@ func IntSlice(o js.Object) []int {
 }
 
 func StringSlice(o js.Object) []string {
+	if o.IsNull() {
+		return nil
+	}
 	d := o.Interface().([]interface{})
 	ret := make([]string, len(d))
 	for i, e := range d {
