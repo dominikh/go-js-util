@@ -4,7 +4,7 @@ package util // import "honnef.co/go/js/util"
 import "github.com/gopherjs/gopherjs/js"
 
 func Float64Slice(o js.Object) []float64 {
-	if o.IsNull() {
+	if o == nil {
 		return nil
 	}
 	d := o.Interface().([]interface{})
@@ -16,7 +16,7 @@ func Float64Slice(o js.Object) []float64 {
 }
 
 func IntSlice(o js.Object) []int {
-	if o.IsNull() {
+	if o == nil {
 		return nil
 	}
 	d := o.Interface().([]interface{})
@@ -28,7 +28,7 @@ func IntSlice(o js.Object) []int {
 }
 
 func StringSlice(o js.Object) []string {
-	if o.IsNull() {
+	if o == nil {
 		return nil
 	}
 	d := o.Interface().([]interface{})
@@ -53,7 +53,7 @@ func (err Err) Error() string {
 }
 
 func Error(o js.Object) error {
-	if o.IsNull() {
+	if o == nil {
 		return nil
 	}
 	return Err{Object: o}
