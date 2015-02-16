@@ -3,7 +3,7 @@ package util // import "honnef.co/go/js/util"
 
 import "github.com/gopherjs/gopherjs/js"
 
-func Float64Slice(o js.Object) []float64 {
+func Float64Slice(o *js.Object) []float64 {
 	if o == nil {
 		return nil
 	}
@@ -15,7 +15,7 @@ func Float64Slice(o js.Object) []float64 {
 	return ret
 }
 
-func IntSlice(o js.Object) []int {
+func IntSlice(o *js.Object) []int {
 	if o == nil {
 		return nil
 	}
@@ -27,7 +27,7 @@ func IntSlice(o js.Object) []int {
 	return ret
 }
 
-func StringSlice(o js.Object) []string {
+func StringSlice(o *js.Object) []string {
 	if o == nil {
 		return nil
 	}
@@ -40,7 +40,7 @@ func StringSlice(o js.Object) []string {
 }
 
 type Err struct {
-	js.Object
+	*js.Object
 	Message string `js:"message"`
 	Name    string `js:"name"`
 	File    string `js:"fileName"`   // Mozilla extension
@@ -52,7 +52,7 @@ func (err Err) Error() string {
 	return err.Message
 }
 
-func Error(o js.Object) error {
+func Error(o *js.Object) error {
 	if o == nil {
 		return nil
 	}
@@ -60,13 +60,13 @@ func Error(o js.Object) error {
 }
 
 type EventTarget struct {
-	js.Object
+	*js.Object
 }
 
-func (t EventTarget) AddEventListener(typ string, useCapture bool, listener func(js.Object)) {
+func (t EventTarget) AddEventListener(typ string, useCapture bool, listener func(*js.Object)) {
 	t.Call("addEventListener", typ, listener, useCapture)
 }
 
-func (t EventTarget) RemoveEventListener(typ string, useCapture bool, listener func(js.Object)) {
+func (t EventTarget) RemoveEventListener(typ string, useCapture bool, listener func(*js.Object)) {
 	t.Call("removeEventListener", typ, listener, useCapture)
 }
